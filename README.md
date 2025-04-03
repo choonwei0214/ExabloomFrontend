@@ -1,1 +1,3 @@
 # ExabloomFrontend
+
+npm install
