@@ -1,20 +1,19 @@
-import { useCallback } from "react";
 import { Handle, Position } from "reactflow";
 import { TbMessage2Share } from "react-icons/tb";
 
 export const StartNode = () => {
   return (
-    <div className="border bg-white px-4 py-1 rounded-md w-48 h-16">
-      <div className="flex items-center gap-x-4 h-4/5 bg-black">
-        {/* <div className="bg-green-200 p-1 rounded-md border border-green-200">
-          <TbMessage2Share className="text-green-700 text-xl"/>
+    <div className="border bg-white p-4 rounded-md w-64">
+      <div className="flex items-stretch gap-x-2">
+        <div className="bg-green-200 rounded-md border border-green-200 flex items-center px-2">
+          <TbMessage2Share className="text-green-700 text-xl" />
         </div>
-        <div>
-          <div className="">Start Node</div>
-          <div>Start</div>
-        </div> */}
+        <div className="flex flex-col justify-center">
+          <div className="text-sm font-semibold text-green-700">Start Node</div>
+          <div className="text-sm text-gray-700">Start</div>
+        </div>
       </div>
-      <Handle type="source" position={Position.Bottom} id="a" />
+      <Handle isConnectable type="source" position={Position.Bottom} id="StartNodeHandle" />
     </div>
   );
 };
