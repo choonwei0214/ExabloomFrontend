@@ -24,3 +24,6 @@ npm install
 ```bash
 npm run start
 ```
+
+Video
+https://www.loom.com/share/ad374d025a7b42dcaf20c611bb713ee7?sid=b22a4a20-3d9d-4f59-9bbf-df39eb0a04d1
