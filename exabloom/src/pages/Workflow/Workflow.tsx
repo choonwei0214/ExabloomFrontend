@@ -707,6 +707,36 @@ export const Workflow = () => {
     );
   };
 
+  const deleteBranch = useCallback((branchId: string) => {
+    setNodes((currentNodes) => {
+      const index = currentNodes.findIndex((n) => n.id === branchId);
+      if (index === -1) return currentNodes;
+
+      const branchNode = currentNodes[index];
+      const addNode = currentNodes[index + 1];
+      const endNode = currentNodes[index + 2];
+
+      const idsToRemove = [branchNode.id];
+      if (addNode?.type === "AddNode") idsToRemove.push(addNode.id);
+      if (endNode?.type === "EndNode") idsToRemove.push(endNode.id);
+
+      const updatedNodes = currentNodes.filter(
+        (n) => !idsToRemove.includes(n.id)
+      );
+
+      setEdges((currentEdges) =>
+        currentEdges.filter(
+          (e) =>
+            !idsToRemove.includes(e.source) && !idsToRemove.includes(e.target)
+        )
+      );
+
+      return updatedNodes;
+    });
+
+    setBranches((prev) => prev.filter((b) => b.id !== branchId));
+  }, []);
+
   console.log("Edges: ", edges);
   console.log("Nodes: ", nodes);
 
@@ -835,7 +865,9 @@ export const Workflow = () => {
                             className="w-[90%] p-2 border border-gray-300 rounded pr-10"
                           />
                           <button
-                            onClick={() => {}}
+                            onClick={() => {
+                              deleteBranch(branch.id);
+                            }}
                             className="w-[10%] flex items-center justify-center text-gray-400 hover:text-red-500 font-bold"
                           >
                             <IoClose className="text-xl" />
